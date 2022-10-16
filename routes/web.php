@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,12 +29,19 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
         Route::resource('categories', CategoryController::class);
 
         //Tags
-        //Route::resource('tags', TagController::class);
+        Route::resource('tags', TagController::class);
 
         //Posts
         //Route::resource('posts', PostController::class);
     });
 });
+
+
+
+
+
+
+
 // Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function(){
 
 //     //Dashboard

@@ -1,18 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Categories') }}
+            {{ __('Tags') }}
         </h2>
     </x-slot>
 
     <x-slot name="nav">
         <div class="space-x-4">
             {{-- Index --}}
-            <x-jet-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
-                {{ __('Categories') }}
+            <x-jet-nav-link href="{{ route('tags.index') }}" :active="request()->routeIs('tags.index')">
+                {{ __('Tags') }}
             </x-jet-nav-link>
             {{-- Create --}}
-            <x-jet-nav-link href="{{ route('categories.create') }}" :active="request()->routeIs('categories.create')">
+            <x-jet-nav-link href="{{ route('tags.create') }}" :active="request()->routeIs('tags.create')">
                 {{ __('Create') }}
             </x-jet-nav-link>
         </div>
@@ -23,19 +23,8 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 
                 <div class="p-6"> 
-                <form action="{{ route('categories.store') }}" method="post">
+                <form action="{{ route('tags.store') }}" method="post">
                     @csrf
-
-                    <div>
-                        <small class="mb-4 text-gray-500">Note: Select Parent only for subcategory</small>
-                        <select name="parent_id" class="w-full mb-6 rounded-lg">
-                            <option value="" selected>Select Parent Category</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
                     <div>
                         <x-jet-label for="name" value="{{ __('Name') }}" />
                         <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
