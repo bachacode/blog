@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +33,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
         Route::resource('tags', TagController::class);
 
         //Posts
-        //Route::resource('posts', PostController::class);
+        Route::resource('posts', PostController::class);
     });
 });
 
