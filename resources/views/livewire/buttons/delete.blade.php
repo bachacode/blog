@@ -14,7 +14,7 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('confirming PostDelete')" wire:loading.attr="disabled">
+            <x-jet-secondary-button wire:click="$toggle('confirmingPostDelete')" wire:loading.attr="disabled">
                 {{ __('Cancel') }}
             </x-jet-secondary-button>
 
