@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Category;
 
 class CategorySeeder extends Seeder
 {
@@ -14,6 +15,11 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        //
+        Category::factory()->create([
+            'name' => 'Holidays',
+            'slug' => 'holidays',
+            'created_at' => now(),
+            'updated_at' => now(),
+            ]);
     }
 }

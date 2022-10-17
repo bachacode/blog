@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Category;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -27,7 +29,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('dashboard.posts.create');
+        return view('dashboard.posts.create',[
+            'tags' => Tag::all(),
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
@@ -38,7 +43,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        return $request;
     }
 
     /**

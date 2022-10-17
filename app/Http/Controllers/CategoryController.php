@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $category->slug = Str::slug($request->name);
         $category->save();
 
-        return redirect()->route('categories.index')->with('success', 'Category successfully created!');
+        return to_route('categories.index')->with('success', 'Category successfully created!');
     }
 
     /**
@@ -87,7 +87,7 @@ class CategoryController extends Controller
         $category->slug = Str::slug($request->name);
         $category->save();
 
-        return redirect()->route('categories.index')->with('success', 'Category successfully edited!');
+        return to_route('categories.index')->with('success', 'Category successfully edited!');
     }
 
     /**
@@ -99,6 +99,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('categories.index')->with('success', 'Category has been deleted');
+        return to_route('categories.index')->with('success', 'Category has been deleted');
     }
 }

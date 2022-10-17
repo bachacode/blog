@@ -15,7 +15,6 @@
 
         {{-- Footer --}}
         <x-partials._footer />
-
         @livewireScripts
     </body>
 </html>

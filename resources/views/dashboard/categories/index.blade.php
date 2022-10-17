@@ -54,8 +54,8 @@
                                     ]
                                 </ul>
                             </td>
-                            <td class="px-2 py-4 whitespace-nowrap">{{ $category->created_at }}</td>
-                            <td class="px-2 py-4 whitespace-nowrap">{{ $category->updated_at }}</td>
+                            <td class="px-2 py-4 whitespace-nowrap">{{ $category->created_at->format('d/m/y') }}</td>
+                            <td class="px-2 py-4 whitespace-nowrap">{{ $category->updated_at->format('d/m/y') }}</td>
                             <td class="px-2 py-4 whitespace-nowrap">
 
                                 <div class="flex justify-center space-x-2">

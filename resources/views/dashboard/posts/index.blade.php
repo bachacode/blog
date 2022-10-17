@@ -29,7 +29,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
                 
-                LIVEWIRE TABLE
+                <livewire:post.index/>
 
             </div>
         </div>

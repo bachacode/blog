@@ -8,7 +8,7 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/js/main.js',
-                'resources/js/drop-down.js',
+                'resources/js/drop-down.js'
             ],
             refresh: [
                 ...refreshPaths,

@@ -43,7 +43,7 @@ class TagController extends Controller
         $tags->slug = Str::slug($request->name);
         $tags->save();
 
-        return redirect()->route('tags.index')->with('success', 'Tag successfully created!');
+        return to_route('tags.index')->with('success', 'Tag successfully created!');
     }
 
     /**
@@ -81,7 +81,7 @@ class TagController extends Controller
         $tag->slug = Str::slug($request->name);
         $tag->save();
 
-        return redirect()->route('tags.index')->with('success', 'Tag successfully edited!');
+        return to_route('tags.index')->with('success', 'Tag successfully edited!');
     }
 
     /**
@@ -93,6 +93,6 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
-        return redirect()->route('tags.index')->with('success', 'Tag has been deleted');
+        return to_route('tags.index')->with('success', 'Tag has been deleted');
     }
 }
