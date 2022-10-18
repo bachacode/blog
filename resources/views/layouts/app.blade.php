@@ -12,7 +12,8 @@
 
         <!-- Scripts -->
         @vite([
-            'resources/css/app.css', 
+            'resources/css/app.css',
+            'resources/css/choices.css',
             'resources/js/app.js'
         ])
 

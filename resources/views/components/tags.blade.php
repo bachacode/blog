@@ -7,6 +7,13 @@
     </select>
     <x-jet-input-error for="tags" class="mt-2" />
 </div>
+@if (!empty($oldTags))
+<select x-cloak id="postTags">
+    @foreach ($oldTags as $id => $name )
+    <option value="{{ $id }}">{{ $name }}</option>
+    @endforeach
+</select>
+@endif
 
 <div x-data="dropdown()" x-init="loadOptions()" class="w-full mx-auto">
     <input name="tags" type="hidden" x-bind:value="selectedValues()">
@@ -17,9 +24,7 @@
             <div x-on:click="open" class="w-full">
                 <div class="flex p-1 my-2 bg-white border border-gray-200 rounded">
                     <div class="flex flex-wrap flex-auto">
-
                         <template x-for="(option,index) in selected" :key="options[option].value">
-
                             <div class="flex items-center justify-center px-1 py-1 m-1 font-medium bg-white border rounded">
                                 <div class="flex-initial max-w-full text-xs font-normal leading-none" x-model="options[option]" x-text="options[option].text">
                                 </div>
@@ -92,7 +97,8 @@
 <script>
     function dropdown() {
         return {
-            options: []
+            options: [],
+            postTag: []
             , selected: []
             , show: false
             , open() {
@@ -124,21 +130,23 @@
 
             }
             , loadOptions() {
-                const options = document.getElementById('select').options;
-                for (let i = 0; i < options.length; i++) {
-                    this.options.push({
-                        value: options[i].value
-                        , text: options[i].innerText
-                        , selected: options[i].getAttribute('selected') != null ? options[i].getAttribute('selected') : false
-                    });
-                }
+                    const options = document.getElementById('select').options;
+                    for (let i = 0; i < options.length; i++) {
+                        this.options.push({
+                            value: options[i].value
+                            , text: options[i].innerText
+                            , selected: options[i].getAttribute('selected') != null ? options[i].getAttribute('selected') : false
+                        });
+                    }
             }
             , selectedValues() {
                 return this.selected.map((option) => {
                     return this.options[option].value;
                 })
             }
+            ,
         }
+        
     }
 
 </script>

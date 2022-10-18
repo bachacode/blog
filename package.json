@@ -17,6 +17,7 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
-        "@alpinejs/focus": "^3.10.4"
+        "@alpinejs/focus": "^3.10.4",
+        "choices.js": "^10.1.0"
     }
 }

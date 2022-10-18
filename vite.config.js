@@ -6,6 +6,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
+                'resources/css/choices.css',
                 'resources/js/app.js',
                 'resources/js/main.js',
                 'resources/js/drop-down.js'

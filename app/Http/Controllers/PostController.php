@@ -10,6 +10,7 @@ use App\Models\Tag;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -46,7 +47,6 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $tags = explode(',', $request->tags);
         $post = new Post;
         $post->title = $request->title;
         $post->slug = Str::slug($request->title);
@@ -67,7 +67,7 @@ class PostController extends Controller
             $post->cover_image = $fileExtension;
         }
         $post->save();
-        $post->tags()->sync($tags);
+        $post->tags()->sync($request->tags);
         return to_route('posts.index')->with('success', 'Post created successfully!');
     }
 
@@ -89,8 +89,11 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
-    {
-        return view('dashboard.posts.edit');
+    {   
+        $tags = Tag::all();
+        $categories = Category::all();
+        $oldTags = $post->tags->pluck('id')->toArray();
+        return view('dashboard.posts.edit', compact('post', 'tags', 'categories', 'oldTags'));
     }
 
     /**
@@ -102,7 +105,31 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $post->title = $request->title;
+        $post->slug = Str::slug($request->title);
+        $post->body = $request->body;
+        $post->user_id = Auth::user()->id;
+        $post->category_id = $request->category_id;
+        $post->published_at = $request->published_at;
+        $post->meta_description = $request->meta_description;
+
+        if($request->hasFile('cover_image')){
+            $oldFileName = $post->cover_image;
+            $image = $request->file('cover_image');
+            $imageName = $image->getClientOriginalName();
+            $imageNewName = explode('.', $imageName)[0];
+            $fileExtension = time() . '.' . $imageNewName . '.' . $image->getClientOriginalExtension();
+            $location = storage_path('app/public/images/' . $fileExtension);
+            Image::make($image)->resize(1200, 630)->save($location);
+            $post->cover_image = $fileExtension;
+
+            File::delete(storage_path('app/public/images/' . $oldFileName));
+        }
+
+        $post->save();
+        $post->tags()->sync($request->tags);
+
+        return to_route('posts.index')->with('success', 'Post successfully updated!');
     }
 
     /**
