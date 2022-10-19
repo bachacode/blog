@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 */
 //Home Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+//Blog Route
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+
 //Auth
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function(){
     Route::prefix('dashboard')->group(function () {

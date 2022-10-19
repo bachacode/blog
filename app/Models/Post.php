@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+
 class Post extends Model
 {
+
     use HasFactory;
 
     protected $table = 'posts';
@@ -17,7 +20,7 @@ class Post extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class)->withDefault('Admin User');
+        return $this->belongsTo(User::class, 'user_id')->withDefault('John Doe');
     }
 
     public function category(): BelongsTo
@@ -36,4 +39,28 @@ class Post extends Model
         ->orWhere('body', 'like', '%'.$search .'%');
     }
 
+     public function scopeCategory(Builder $query, string $category): Builder
+    {
+        return $query->where('category_id', $category);
+    }
+
+    public function scopeFeatured(Builder $query): Builder
+    {
+        return $query->where('featured', true);
+    }
+
+    public function scopePublished(Builder $query): Builder
+    {
+        return $query->whereNotNull('published_at')->where('published_at', '<=', new \DateTime());
+    }
+
+    public function scopeRecentAsc(Builder $query): Builder
+    {
+        return $query->orderBy('title', 'asc');
+    }
+
+    public function scopeRecentDesc(Builder $query): Builder
+    {
+        return $query->orderBy('title', 'desc');
+    }
 }
