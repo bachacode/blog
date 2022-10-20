@@ -26,6 +26,11 @@
       @if (Route::has('login'))
       <ul class="list-reset lg:flex justify-end flex-1 items-center">
         <li class="mr-3">
+          <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+            {{ __('Home') }}
+        </x-jet-nav-link>
+        </li>
+        <li class="mr-3">
           <x-jet-nav-link href="{{ route('blog') }}" :active="request()->routeIs('login')">
             {{ __('Blog') }}
         </x-jet-nav-link>

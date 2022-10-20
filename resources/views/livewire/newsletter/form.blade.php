@@ -3,7 +3,7 @@
 
     <form wire:submit.prevent="formSubmit">
 
-        <div class="container mx-auto max-w-xl text-left space-y-5">
+        <div class="container mx-auto max-w-md text-left space-y-5 bg-orange-500 p-6 border-black rounded-3xl shadow-lg shadow-red-600">
 
             {{-- Name --}}
             <div>
@@ -20,7 +20,7 @@
             </div>
 
             {{-- Submit Button --}}
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-center mt-4">
                 <x-jet-button class="ml-4">
                     {{ __('Subscribe') }}
                 </x-jet-button>

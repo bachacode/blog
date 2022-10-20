@@ -63,4 +63,9 @@ class Post extends Model
     {
         return $query->orderBy('title', 'desc');
     }
+
+    public function metaDescription()
+    {
+        return strip_tags($this->body);
+    }
 }

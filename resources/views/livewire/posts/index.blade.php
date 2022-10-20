@@ -64,7 +64,7 @@
                     <td class="px-2 py-4 whitespace-nowrap">{{ $post->id }}</td>
                     <td class="px-2 py-4 whitespace-nowrap">{{ Str::limit($post->title, 40, '40') }}</td>
                     <td class="px-2 py-4 whitespace-nowrap">{{ $post->category->name }}</td>
-                    <td class="px-2 py-4 whitespace-nowrap">FEATURED</td>
+                    <td class="px-2 py-4 whitespace-nowrap"><livewire:buttons.featured :post="$post" :key="'featured'.$post->id" :name="'featured'" /></td>
                     <td class="px-2 py-4 whitespace-nowrap">{{ $post->created_at->format('d/m/y') }}</td>
                     <td class="px-2 py-4 whitespace-nowrap">{{ $post->updated_at->format('d/m/y') }}</td>
                     <td class="px-2 py-4 whitespace-nowrap">
