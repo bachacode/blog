@@ -33,6 +33,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
         
         //Categories
         Route::resource('categories', CategoryController::class);
+        Route::get('sub-categories/', [CategoryController::class, 'subCategories'])->name('subCategories');
+        Route::get('sub-categories/create', [CategoryController::class, 'subCategoriesCreate'])->name('subCategories.create');
 
         //Tags
         Route::resource('tags', TagController::class);

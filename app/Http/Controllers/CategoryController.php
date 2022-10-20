@@ -23,6 +23,15 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function subCategories()
+    {
+        // $categories = Category::with('subCategories')->whereNull('parent_id')->get();
+        // return $categories;
+        return view('dashboard.categories.sub-categories.index', [
+            'categories' => Category::with('subCategories')->whereNotNull('parent_id')->get(),
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -84,6 +93,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $category->name = $request->name;
+        $category->parent_id = $request->parent_id;
         $category->slug = Str::slug($request->name);
         $category->save();
 

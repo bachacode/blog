@@ -27,6 +27,16 @@
                         @csrf
                         @method('PUT')
 
+                        @if (!is_null($category->parent_id))
+                        <div>
+                            <select name="parent_id" class="w-full mb-6 rounded-lg">
+                                @foreach ($categories as $parentCategory)
+                                    <option value="{{ $parentCategory->id }}" {{ $category->parent_id == $parentCategory->id ? 'selected' : '' }}>{{ $parentCategory->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @endif
+
                         <div>
                             <x-jet-label for="name" value="{{ __('Name') }}" />
                             <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name"
@@ -34,6 +44,7 @@
                             <span class="text-xs text-gray-500 mt-2">Maximum 80 characters</span>
                             <x-jet-input-error for="name" class="mt-2" />
                         </div>
+                        
 
                         <div class="flex items-center justify-end mt-4">
                             <x-jet-button class="ml-4">
